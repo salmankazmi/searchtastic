@@ -22,7 +22,7 @@ public class SearchController {
     }
 
     @GetMapping(value="/searchNames")
-    public List<Object> searchNames(@RequestParam(required = true) String q) {
+    public List<String> searchNames(@RequestParam(required = true) String q) {
         if (null != q && q.length() > 0) {
             return searchService.searchNames(q);
         }
@@ -32,7 +32,7 @@ public class SearchController {
     @GetMapping(value = "/search")
     public Page<SearchData> getAllSearchResults(@RequestParam(required = true) String q,
                                  @RequestParam(name = "page", defaultValue = "0") int page,
-                                 @RequestParam(name = "size", defaultValue = "5") int size) {
+                                 @RequestParam(name = "size", defaultValue = "10") int size) {
         return searchService.getAllSearchResults(q, PageRequest.of(page, size));
     }
 }

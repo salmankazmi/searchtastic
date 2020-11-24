@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -18,8 +20,13 @@ public class SearchService {
         this.searchRepository = searchRepository;
     }
 
-    public List<Object> searchNames(String query) {
-        return searchRepository.findCompanies(query);
+    public List<String> searchNames(String query) {
+        List<String> resultList = searchRepository.findCompanies(query);
+        if (!resultList.isEmpty()) {
+            Collections.sort(resultList);
+            return resultList;
+        }
+        return Collections.emptyList();
     }
 
     public Page<SearchData> getAllSearchResults(String query, Pageable pageable) {

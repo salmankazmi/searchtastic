@@ -14,7 +14,7 @@ public interface SearchRepository extends PagingAndSortingRepository<SearchData,
             "%?1% LIMIT 10";
 
     @Query(value = FIND_COMPANIES, nativeQuery = true)
-    public List<Object> findCompanies(String query);
+    public List<String> findCompanies(String query);
 
     Page<SearchData> findByCompanyNameContainingIgnoreCase(String query, Pageable pageable);
 }
