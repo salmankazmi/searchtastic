@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/complete")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class SearchController {
 
     private SearchService searchService;
